@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>RPG_Mabinogi</name>
+	<name>Mabinogi_UI</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -24,6 +24,11 @@
 			<name>src/Image/MainTitle.png</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/MainTitle.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Shortcut.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Shortcut.png</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

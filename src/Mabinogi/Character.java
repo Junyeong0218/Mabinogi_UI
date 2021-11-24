@@ -31,6 +31,7 @@ public class Character {
 	
 	public Character()
 	{
+		this.name = "테스트용";
 		this.level = 1;
 		this.abilityPoint = 0;
 		this.rebirth = 0;

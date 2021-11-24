@@ -1,7 +1,6 @@
 package Mabinogi;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -20,9 +19,11 @@ public class MainTest {
 		// ./MobData.txt 에서 몬스터 정보 불러오기
 		loadMob(mob);
 		
-		View view = new View();
+		Controller controller = new Controller(user, map, mob);
 		
-		Controller controller = new Controller(user, map, mob, view);
+		View view = new View(controller);
+		
+		controller.setView(view, view.panelMain);
 		
 		view.showForm();
 	}
