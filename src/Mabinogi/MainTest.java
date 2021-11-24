@@ -9,9 +9,9 @@ public class MainTest {
 
 	public static void main(String[] args) throws Throwable {
 		
-		Character user = new Character();
 		Map[] map = new Map[6];
 		Mob[] mob = new Mob[29];
+		Skill[] skill = new Skill[16];
 		
 		// ./MapData.txt 에서 맵 정보 불러오기
 		loadMap(map);
@@ -19,11 +19,16 @@ public class MainTest {
 		// ./MobData.txt 에서 몬스터 정보 불러오기
 		loadMob(mob);
 		
+		// ./Skill.txt 에서 스킬 정보 불러오기
+		loadSkill(skill);
+		
+		Character user = new Character(skill);
+		
 		Controller controller = new Controller(user, map, mob);
 		
 		View view = new View(controller);
 		
-		controller.setView(view, view.panelMain);
+		controller.setView(view, view.panelMain, view.panelInfo);
 		
 		view.showForm();
 	}
@@ -75,6 +80,32 @@ public class MainTest {
 			int i_temp_9 = Integer.parseInt(stk.nextToken());
 			
 			mob[i_temp_index] = new Mob(s_temp_1, s_temp_2, i_temp_1, i_temp_2, i_temp_3, i_temp_4, i_temp_5, i_temp_6, i_temp_7, i_temp_8, i_temp_9);
+			
+			temp = br.readLine();
+		}
+		while(temp != null);
+	}
+	
+	public static void loadSkill(Skill[] skill) throws Throwable
+	{
+		String path = "./Skill.txt";
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		
+		String temp = br.readLine();
+		temp = br.readLine();
+		
+		do
+		{
+			StringTokenizer stk = new StringTokenizer(temp,"\t");
+			
+			int i_temp_index = Integer.parseInt(stk.nextToken());
+			String s_temp_1 = stk.nextToken();
+			String s_temp_2 = stk.nextToken();
+			int i_temp_ap = Integer.parseInt(stk.nextToken());
+			double d_temp_damage = Double.parseDouble(stk.nextToken());
+			String s_temp_ex = "적에게 큰 데미지 (" + (int)(d_temp_damage*100) + "%) 를 줄 수 있다";
+			
+			skill[i_temp_index] = new Skill(s_temp_1, s_temp_2, i_temp_ap, d_temp_damage, s_temp_ex);
 			
 			temp = br.readLine();
 		}

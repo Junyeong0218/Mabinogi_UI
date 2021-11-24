@@ -38,6 +38,24 @@ public class PanelMainButtons extends JPanel {
 		
 		setButtons();
 		
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.goToInfo();
+			}
+		});
+		
+		btnSkill.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.goToSkillInfo();
+			}
+		});
+		
+		btnBattle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.goToSelectMap();
+			}
+		});
+		
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);

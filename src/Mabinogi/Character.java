@@ -29,9 +29,12 @@ public class Character {
 	private final double DEFENCE_DIV = 5;
 	private final double CRITICAL_DIV = 5;
 	
-	public Character()
+	Skill[] skill = null;
+	int skillIndex;
+	
+	public Character(Skill[] skill)
 	{
-		this.name = "테스트용";
+		//this.name = "테스트용";
 		this.level = 1;
 		this.abilityPoint = 0;
 		this.rebirth = 0;
@@ -45,6 +48,9 @@ public class Character {
 		
 		this.fullHp = (int)d_hp;
 		this.fullStamina = (int)d_stamina;
+		
+		this.skill = skill;
+		this.skillIndex = 0;
 		
 		setNeededExp();
 	}
@@ -201,6 +207,10 @@ public class Character {
 	public void earnMoney(int money)
 	{
 		this.money += money;
+	}
+	
+	public void loseAp(int ap) {
+		this.abilityPoint -= ap;
 	}
 	
 	public void levelup()

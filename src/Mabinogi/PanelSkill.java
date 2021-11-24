@@ -8,53 +8,48 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
-public class PanelInfo extends JPanel {
+public class PanelSkill extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+
+	JPanel panelSkill;
+	JPanel panelSkillAdvance;
 	
-	JPanel panelInfo;
-	JPanel panelInfoStatus;
-	JPanel panelInfoSkill;
-	
-	JLabel info_bg;
+	JLabel skill_bg;
 	
 	JButton backToMain;
 	
 	Controller controller;
 	
-	ImageIcon info_Background = new ImageIcon(View.class.getResource("../Image/Main.png"));
+	ImageIcon skill_bg_icon = new ImageIcon(View.class.getResource("../Image/Main.png"));
 	
-	public PanelInfo(Controller controller) {
+	public PanelSkill(Controller controller) {
 		
 		this.controller = controller;
 		
-		panelInfo = new JPanel();		
-		//setBounds(10, 7, 605, 300);
+		panelSkill = new JPanel();
+		
 		setBounds(0, 0, 640, 360);
 		setLayout(null);
+		//setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "스킬 정보"));
 		
-		info_bg = new JLabel(info_Background);
-		info_bg.setBounds(0, -20, 640, 360);
+		skill_bg = new JLabel(skill_bg_icon);
+		skill_bg.setBounds(0, -20, 640, 360);
 		
-		panelInfoStatus = new PanelInfoStatus(controller);
-		panelInfoSkill = new PanelInfoSkill(controller);
+		panelSkillAdvance = new PanelSkillAdvance(controller);
+		
 		backToMain = new JButton("뒤로가기");
 		backToMain.setBounds(322, 255, 296, 50);
-		
 		backToMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.goToMain();
 			}
 		});
 		
-		add(panelInfoStatus);
-		add(panelInfoSkill);
+		add(panelSkillAdvance);
 		add(backToMain);
-		add(info_bg);
-				
+		add(skill_bg);
 		
 		setVisible(true);
 	}
-
 }
