@@ -2,7 +2,7 @@ package Mabinogi;
 
 public class Map {
 	
-	String name;
+	private String name;
 	
 	public Map(String name)
 	{

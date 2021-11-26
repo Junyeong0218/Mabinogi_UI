@@ -29,8 +29,8 @@ public class Character {
 	private final double DEFENCE_DIV = 5;
 	private final double CRITICAL_DIV = 5;
 	
-	Skill[] skill = null;
-	int skillIndex;
+	private Skill[] skill = null;
+	private int smashIndex, finalHitIndex, defenceIndex;
 	
 	public Character(Skill[] skill)
 	{
@@ -50,7 +50,9 @@ public class Character {
 		this.fullStamina = (int)d_stamina;
 		
 		this.skill = skill;
-		this.skillIndex = 0;
+		this.smashIndex = 0;
+		this.finalHitIndex = 16;
+		this.defenceIndex = 32;
 		
 		setNeededExp();
 	}
@@ -107,6 +109,50 @@ public class Character {
 		neededExp[47] = 72700;		
 		neededExp[48] = 77700;		
 		neededExp[49] = 83000;		
+	}
+	
+	public void getSelectedSkillIndex() {
+		
+	}
+	
+	public int getSmashCurrentIndex() {
+		return smashIndex;
+	}
+	
+	public int getFinalHitCurrentIndex() {
+		return finalHitIndex;
+	}
+	
+	public int getDefenceIndex() {
+		return defenceIndex;
+	}
+	
+	public String getSkillName(int skillIndex) {
+		return skill[skillIndex].getName();
+	}
+	
+	public String getSkillRank(int skillIndex) {
+		return skill[skillIndex].getRank();
+	}
+	
+	public String getSkillEx(int skillIndex) {
+		return skill[skillIndex].getExplanation();
+	}
+	
+	public int getSkillAp(int skillIndex) {
+		return skill[skillIndex].getAp();
+	}
+	
+	public void skillRankUp(int skillIndex) {
+		if(skillIndex > 31) {
+			defenceIndex++;
+		}
+		else if(skillIndex > 15) {
+			finalHitIndex++;
+		}
+		else if(skillIndex > -1) {
+			smashIndex++;
+		}
 	}
 	
 	public String getName()

@@ -21,13 +21,9 @@ public class PanelInfo extends JPanel {
 	
 	JButton backToMain;
 	
-	Controller controller;
-	
 	ImageIcon info_Background = new ImageIcon(View.class.getResource("../Image/Main.png"));
 	
 	public PanelInfo(Controller controller) {
-		
-		this.controller = controller;
 		
 		panelInfo = new JPanel();		
 		//setBounds(10, 7, 605, 300);

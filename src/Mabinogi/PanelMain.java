@@ -14,8 +14,6 @@ public class PanelMain extends JPanel{
 	
 	JLabel main_bg;
 	
-	Controller controller;
-	
 	ImageIcon main_Background = new ImageIcon(View.class.getResource("../Image/Main.png"));
 	
 	public PanelMain(Controller controller) {

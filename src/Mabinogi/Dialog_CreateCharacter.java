@@ -7,9 +7,8 @@ import javax.swing.*;
 public class Dialog_CreateCharacter extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	JTextField jtxt = new JTextField(15);
-	JButton okBtn = new JButton("확인");
-	Controller controller;
+	private JTextField jtxt = new JTextField(15);
+	private JButton okBtn = new JButton("확인");
 	
 	public Dialog_CreateCharacter(JFrame frame, Controller controller)
 	{

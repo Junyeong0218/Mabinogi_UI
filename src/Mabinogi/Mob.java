@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Mob {
 
-	String name, map;
-	int level, hp, minDamage, maxDamage, critical, defence, exp, minMoney, maxMoney;
+	private String name, map;
+	private int level, hp, minDamage, maxDamage, critical, defence, exp, minMoney, maxMoney;
 	
 	public Mob(String name, String map, int level, int hp, int minDamage, int maxDamage, int critical, int defence, int exp, int minMoney, int maxMoney)
 	{
@@ -20,6 +20,20 @@ public class Mob {
 		this.exp = exp;
 		this.minMoney = minMoney;
 		this.maxMoney = maxMoney;
+	}
+	
+	
+
+	public String getMap() {
+		return map;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public int getExp() {
+		return exp;
 	}
 
 	public String getName() {

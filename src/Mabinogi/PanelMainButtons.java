@@ -18,11 +18,7 @@ public class PanelMainButtons extends JPanel {
 	JButton btnBattle;
 	JButton btnExit;
 	
-	Controller controller;
-	
 	public PanelMainButtons(Controller controller) {
-		
-		this.controller = controller;
 		
 		mainButtons = new JPanel();
 		setLayout(null);

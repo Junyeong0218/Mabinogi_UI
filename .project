@@ -31,9 +31,64 @@
 			<locationURI>PROJECT_LOC/Shortcut.png</locationURI>
 		</link>
 		<link>
-			<name>src/Image/Skill_Smash.png</name>
+			<name>src/Image/defence_1Rank.png</name>
 			<type>1</type>
-			<locationURI>PROJECT_LOC/Skill_Smash.png</locationURI>
+			<locationURI>PROJECT_LOC/defence_1Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/defence_5Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/defence_5Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/defence_9Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/defence_9Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/defence_Normal.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/defence_Normal.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/finalHit_1Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/finalHit_1Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/finalHit_5Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/finalHit_5Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/finalHit_9Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/finalHit_9Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/finalHit_Normal.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/finalHit_Normal.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/smash_1Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/smash_1Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/smash_5Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/smash_5Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/smash_9Rank.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/smash_9Rank.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/smash_Normal.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/smash_Normal.png</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

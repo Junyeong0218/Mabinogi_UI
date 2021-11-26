@@ -11,7 +11,7 @@ public class MainTest {
 		
 		Map[] map = new Map[6];
 		Mob[] mob = new Mob[29];
-		Skill[] skill = new Skill[16];
+		Skill[] skill = new Skill[48];
 		
 		// ./MapData.txt 에서 맵 정보 불러오기
 		loadMap(map);
@@ -28,7 +28,7 @@ public class MainTest {
 		
 		View view = new View(controller);
 		
-		controller.setView(view, view.panelMain, view.panelInfo);
+		controller.setView(view);
 		
 		view.showForm();
 	}

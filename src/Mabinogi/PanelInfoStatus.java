@@ -14,7 +14,7 @@ public class PanelInfoStatus extends JPanel {
 	
 	JPanel status;
 	
-	Controller controller;
+	public Controller controller;
 	
 	public PanelInfoStatus(Controller controller) {
 		
@@ -25,20 +25,20 @@ public class PanelInfoStatus extends JPanel {
 		setBounds(10, 7, 300, 300);
 		setLayout(new GridLayout(11, 2));
 		setBackground(new Color(255, 0, 0, 0));
-		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), controller.user.getName()));
+		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), controller.getUserName()));
 		
-		JLabel lbl_level = new JLabel(" 레벨 :");				JLabel lbl_level_data = new JLabel(Integer.toString(controller.user.getLevel()));
-		JLabel lbl_hp = new JLabel(" 체력 : "); 				JLabel lbl_hp_data = new JLabel(Integer.toString((int)controller.user.getHp()) + " / " + Integer.toString(controller.user.getFullHp()));
-		JLabel lbl_stamina = new JLabel(" 스테미너 :");			JLabel lbl_stamina_data = new JLabel(Integer.toString((int)controller.user.getStamina()) + " / " + Integer.toString(controller.user.getFullStamina()));
-		JLabel lbl_exp = new JLabel(" 경험치 :");				JLabel lbl_exp_data = new JLabel(Integer.toString(controller.user.getExp()) + " / " + Integer.toString(controller.user.getNeededExp(controller.user.getLevel())) );
-		JLabel lbl_ap = new JLabel(" 어빌리티 포인트 :");		JLabel lbl_ap_data = new JLabel(Integer.toString(controller.user.getAbilityPoint()));
-		JLabel lbl_money = new JLabel(" 금전 :");				JLabel lbl_money_data = new JLabel(Integer.toString(controller.user.getMoney()));
+		JLabel lbl_level = new JLabel(" 레벨 :");				JLabel lbl_level_data = new JLabel(Integer.toString(controller.getUserLevel()));
+		JLabel lbl_hp = new JLabel(" 체력 : "); 				JLabel lbl_hp_data = new JLabel(Integer.toString(controller.getUserHp()) + " / " + Integer.toString(controller.getUserFullHp()));
+		JLabel lbl_stamina = new JLabel(" 스테미너 :");			JLabel lbl_stamina_data = new JLabel(Integer.toString(controller.getUserStamina()) + " / " + Integer.toString(controller.getUserFullStamina()));
+		JLabel lbl_exp = new JLabel(" 경험치 :");				JLabel lbl_exp_data = new JLabel(Integer.toString(controller.getUserExp()) + " / " + Integer.toString(controller.getUserNeededExp()) );
+		JLabel lbl_ap = new JLabel(" 어빌리티 포인트 :");		JLabel lbl_ap_data = new JLabel(Integer.toString(controller.getUserAp()));
+		JLabel lbl_money = new JLabel(" 금전 :");				JLabel lbl_money_data = new JLabel(Integer.toString(controller.getUserMoney()));
 		
-		JLabel lbl_str = new JLabel(" str :");					JLabel lbl_str_data = new JLabel(Integer.toString((int)controller.user.getStr()));
-		JLabel lbl_will = new JLabel(" will :");				JLabel lbl_will_data = new JLabel(Integer.toString((int)controller.user.getWill()));
-		JLabel lbl_damage = new JLabel(" 공격력 :");			JLabel lbl_damage_data = new JLabel(Integer.toString(controller.user.getMinDamage(controller.user.getStr())) + " ~ " + Integer.toString(controller.user.getMaxDamage(controller.user.getStr())) );			
-		JLabel lbl_defence = new JLabel(" 방어력 :");			JLabel lbl_defence_data = new JLabel(Integer.toString(controller.user.getDefence(controller.user.getStr())));
-		JLabel lbl_critical = new JLabel(" 크리티컬 :");		JLabel lbl_critical_data = new JLabel(Integer.toString(controller.user.getCritical(controller.user.getWill())) + " %");
+		JLabel lbl_str = new JLabel(" str :");					JLabel lbl_str_data = new JLabel(Integer.toString((int)controller.getUserStr()));
+		JLabel lbl_will = new JLabel(" will :");				JLabel lbl_will_data = new JLabel(Integer.toString((int)controller.getUserWill()));
+		JLabel lbl_damage = new JLabel(" 공격력 :");			JLabel lbl_damage_data = new JLabel(Integer.toString(controller.getUserMinDamage()) + " ~ " + Integer.toString(controller.getUserMaxDamage()));			
+		JLabel lbl_defence = new JLabel(" 방어력 :");			JLabel lbl_defence_data = new JLabel(Integer.toString(controller.getUserDefence()));
+		JLabel lbl_critical = new JLabel(" 크리티컬 :");		JLabel lbl_critical_data = new JLabel(Integer.toString(controller.getUserCritical()) + " %");
 		
 		add(lbl_level);
 		add(lbl_level_data);

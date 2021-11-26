@@ -14,13 +14,10 @@ public class PanelInfoSkill extends JPanel {
 	
 	JPanel status_skill;
 	
-	Controller controller;
+	private ImageIcon smash = new ImageIcon(View.class.getResource("../Image/smash_Normal.png"));
 	
-	ImageIcon smash = new ImageIcon(View.class.getResource("../Image/Skill_Smash.png"));
 	
 	public PanelInfoSkill(Controller controller) {
-		
-		this.controller = controller;
 		
 		status_skill = new JPanel();
 		
@@ -29,10 +26,10 @@ public class PanelInfoSkill extends JPanel {
 		setBackground(new Color(255, 0, 0, 0));
 		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "½ºÅ³ Á¤º¸"));
 		
-		JLabel lbl_SmashName = new JLabel("[ " + controller.user.skill[controller.user.skillIndex].getName() + " ]");
+		JLabel lbl_SmashName = new JLabel("[ " + controller.getSkillName(controller.getSmashIndex()) + " ]");
 		JLabel lbl_SmashIcon = new JLabel(smash);
-		JLabel lbl_SmashRank = new JLabel(controller.user.skill[controller.user.skillIndex].getRank() + " ·©Å©");
-		JLabel lbl_SmashEx = new JLabel(controller.user.skill[controller.user.skillIndex].getExplanation());
+		JLabel lbl_SmashRank = new JLabel(controller.getSkillRank(controller.getSmashIndex()) + " ·©Å©");
+		JLabel lbl_SmashEx = new JLabel(controller.getSkillEx(controller.getSmashIndex()));
 		
 		lbl_SmashName.setBounds(15, 20, 250, 16);
 		lbl_SmashIcon.setBounds(15, 39, 35, 35);

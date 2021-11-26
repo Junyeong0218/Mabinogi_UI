@@ -19,19 +19,14 @@ public class PanelSkill extends JPanel {
 	
 	JButton backToMain;
 	
-	Controller controller;
-	
 	ImageIcon skill_bg_icon = new ImageIcon(View.class.getResource("../Image/Main.png"));
 	
 	public PanelSkill(Controller controller) {
-		
-		this.controller = controller;
 		
 		panelSkill = new JPanel();
 		
 		setBounds(0, 0, 640, 360);
 		setLayout(null);
-		//setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "스킬 정보"));
 		
 		skill_bg = new JLabel(skill_bg_icon);
 		skill_bg.setBounds(0, -20, 640, 360);
@@ -39,7 +34,7 @@ public class PanelSkill extends JPanel {
 		panelSkillAdvance = new PanelSkillAdvance(controller);
 		
 		backToMain = new JButton("뒤로가기");
-		backToMain.setBounds(322, 255, 296, 50);
+		backToMain.setBounds(322, 265, 296, 50);
 		backToMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.goToMain();

@@ -16,14 +16,12 @@ public class PanelTitle extends JPanel {
 	JPanel panelTitle;
 	JButton startButton;
 	
-	Controller controller;
 	Dialog_CreateCharacter dialog;
 	
 	Image title_Background = new ImageIcon(View.class.getResource("../Image/MainTitle.png")).getImage();
 	//Image currentBg = title_Background;
 	
 	public PanelTitle(Controller controller) {
-		this.controller = controller;
 		
 		panelTitle = new JPanel();
 		setLayout(null);
