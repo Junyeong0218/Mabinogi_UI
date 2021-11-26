@@ -36,7 +36,7 @@ public class Character {
 	{
 		//this.name = "테스트용";
 		this.level = 1;
-		this.abilityPoint = 0;
+		this.abilityPoint = 100;
 		this.rebirth = 0;
 		this.exp = 0;
 		this.money = 0;

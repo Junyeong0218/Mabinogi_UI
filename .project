@@ -71,6 +71,11 @@
 			<locationURI>PROJECT_LOC/finalHit_Normal.png</locationURI>
 		</link>
 		<link>
+			<name>src/Image/skillAdvance.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/skillAdvance.png</locationURI>
+		</link>
+		<link>
 			<name>src/Image/smash_1Rank.png</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/smash_1Rank.png</locationURI>

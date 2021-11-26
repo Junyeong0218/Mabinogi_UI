@@ -1,8 +1,11 @@
 package Mabinogi;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -18,14 +21,21 @@ public class PanelSkillAdvance extends JPanel {
 	private JLabel smash_icon;
 	private JLabel smash_rank;
 	private JLabel smash_ex;
+	private JLabel smash_neededAp;
 	private JLabel finalHit_name;
 	private JLabel finalHit_icon;
 	private JLabel finalHit_rank;
 	private JLabel finalHit_ex;
+	private JLabel finalHit_neededAp;
 	private JLabel defence_name;
 	private JLabel defence_icon;
 	private JLabel defence_rank;
 	private JLabel defence_ex;
+	private JLabel defence_neededAp;
+	
+	private JButton advance_smash;
+	private JButton advance_finalHit;
+	private JButton advance_defence;
 	
 	private ImageIcon smash_common = new ImageIcon(View.class.getResource("../Image/smash_Normal.png"));
 	private ImageIcon smash_9Rank = new ImageIcon(View.class.getResource("../Image/smash_9Rank.png"));
@@ -43,6 +53,8 @@ public class PanelSkillAdvance extends JPanel {
 	private ImageIcon smash_Selected_Icon;
 	private ImageIcon finalHit_Selected_Icon;
 	private ImageIcon defence_Selected_Icon;
+	
+	private ImageIcon skillAdvance = new ImageIcon(View.class.getResource("../Image/skillAdvance.png"));
 	
 	private Controller controller;
 	
@@ -63,16 +75,22 @@ public class PanelSkillAdvance extends JPanel {
 		smash_icon = new JLabel(smash_Selected_Icon);
 		smash_rank = new JLabel(controller.getSkillRank(controller.getSmashIndex()) + " 랭크");
 		smash_ex = new JLabel(controller.getSkillEx(controller.getSmashIndex()));
+		smash_neededAp = new JLabel("필요 어빌리티 포인트 : " + controller.getSkillAp(controller.getSmashIndex()+1));
+		advance_smash = new JButton(skillAdvance);
 		
 		finalHit_name = new JLabel("[ " + controller.getSkillName(controller.getFinalHitIndex()) + " ]");
 		finalHit_icon = new JLabel(finalHit_Selected_Icon);
 		finalHit_rank = new JLabel(controller.getSkillRank(controller.getFinalHitIndex()) + " 랭크");
 		finalHit_ex = new JLabel(controller.getSkillEx(controller.getFinalHitIndex()));
+		finalHit_neededAp = new JLabel("필요 어빌리티 포인트 : " + controller.getSkillAp(controller.getFinalHitIndex()+1));
+		advance_finalHit = new JButton(skillAdvance);
 		
 		defence_name = new JLabel("[ " + controller.getSkillName(controller.getDefenceIndex()) + " ]");
 		defence_icon = new JLabel(defence_Selected_Icon);
 		defence_rank = new JLabel(controller.getSkillRank(controller.getDefenceIndex()) + " 랭크");
 		defence_ex = new JLabel(controller.getSkillEx(controller.getDefenceIndex()));
+		defence_neededAp = new JLabel("필요 어빌리티 포인트 : " + controller.getSkillAp(controller.getDefenceIndex()+1));
+		advance_defence = new JButton(skillAdvance);
 		
 		setLabels();
 		
@@ -80,16 +98,22 @@ public class PanelSkillAdvance extends JPanel {
 		add(smash_icon);
 		add(smash_rank);
 		add(smash_ex);
+		add(smash_neededAp);
+		add(advance_smash);
 		
 		add(finalHit_name);
 		add(finalHit_icon);
 		add(finalHit_rank);
 		add(finalHit_ex);
+		add(finalHit_neededAp);
+		add(advance_finalHit);
 		
 		add(defence_name);
 		add(defence_icon);
 		add(defence_rank);
 		add(defence_ex);
+		add(defence_neededAp);
+		add(advance_defence);
 		
 		setVisible(true);
 	}
@@ -145,16 +169,61 @@ public class PanelSkillAdvance extends JPanel {
 		smash_icon.setBounds(15, 40, 42, 42);
 		smash_rank.setBounds(61, 40, 250, 19);
 		smash_ex.setBounds(61, 63, 250, 19);
+		smash_neededAp.setBounds(300, 20, 250, 16);
+		advance_smash.setBounds(300, 49, 80, 24);
+		advance_smash.setBorderPainted(false);
+		if(controller.judgeApEnough(controller.getSmashIndex())) {
+			advance_smash.setEnabled(true);
+		} else {
+			advance_smash.setEnabled(false);
+		}
+		advance_smash.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				controller.skillRankUp(controller.getSmashIndex());
+			}
+			
+		});
 		
 		finalHit_name.setBounds(15, 97, 250, 16);
 		finalHit_icon.setBounds(15, 117, 42, 42);
 		finalHit_rank.setBounds(61, 117, 250, 19);
 		finalHit_ex.setBounds(61, 140, 250, 19);
+		finalHit_neededAp.setBounds(300, 97, 250, 16);
+		advance_finalHit.setBounds(300, 126, 80, 24);
+		advance_finalHit.setBorderPainted(false);
+		if(controller.judgeApEnough(controller.getFinalHitIndex())) {
+			advance_finalHit.setEnabled(true);
+		} else {
+			advance_finalHit.setEnabled(false);
+		}
+		advance_finalHit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				controller.skillRankUp(controller.getFinalHitIndex());
+			}
+			
+		});
 		
 		defence_name.setBounds(15, 174, 250, 16);
 		defence_icon.setBounds(15, 194, 42, 42);
 		defence_rank.setBounds(61, 194, 250, 19);
 		defence_ex.setBounds(61, 217, 250, 19);
+		defence_neededAp.setBounds(300, 174, 250, 16);
+		advance_defence.setBounds(300, 203, 80, 24);
+		advance_defence.setBorderPainted(false);
+		if(controller.judgeApEnough(controller.getDefenceIndex())) {
+			advance_defence.setEnabled(true);
+		} else {
+			advance_defence.setEnabled(false);
+		}
+		advance_defence.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				controller.skillRankUp(controller.getDefenceIndex());
+			}
+			
+		});
 	}
 	
 }

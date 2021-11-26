@@ -98,12 +98,24 @@ public class MainTest {
 		{
 			StringTokenizer stk = new StringTokenizer(temp,"\t");
 			
+			String s_temp_ex;
+			
 			int i_temp_index = Integer.parseInt(stk.nextToken());
 			String s_temp_1 = stk.nextToken();
 			String s_temp_2 = stk.nextToken();
 			int i_temp_ap = Integer.parseInt(stk.nextToken());
 			double d_temp_damage = Double.parseDouble(stk.nextToken());
-			String s_temp_ex = "적에게 큰 데미지 (" + (int)(d_temp_damage*100) + "%) 를 줄 수 있다";
+			
+			if(i_temp_index > 31) {
+				// defence 스킬
+				s_temp_ex = "방어력을 (" + (int)(d_temp_damage*100) + "%) 만큼 1턴 증가시킨다.";
+			} else if(i_temp_index > 15) {
+				// finalHit 스킬
+				s_temp_ex = "적에게 (" + (int)(d_temp_damage*100) + "%) 의 데미지를 2회 입힌다.";
+			} else {
+				// smash 스킬
+				s_temp_ex = "적에게 큰 데미지 (" + (int)(d_temp_damage*100) + "%) 를 줄 수 있다";
+			}
 			
 			skill[i_temp_index] = new Skill(s_temp_1, s_temp_2, i_temp_ap, d_temp_damage, s_temp_ex);
 			

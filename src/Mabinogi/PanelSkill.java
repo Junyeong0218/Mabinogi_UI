@@ -16,6 +16,7 @@ public class PanelSkill extends JPanel {
 	JPanel panelSkillAdvance;
 	
 	JLabel skill_bg;
+	JLabel current_ap;
 	
 	JButton backToMain;
 	
@@ -29,7 +30,9 @@ public class PanelSkill extends JPanel {
 		setLayout(null);
 		
 		skill_bg = new JLabel(skill_bg_icon);
+		current_ap = new JLabel("현재 어빌리티 포인트 : " + controller.getUserAp());
 		skill_bg.setBounds(0, -20, 640, 360);
+		current_ap.setBounds(472, 0, 250, 16);
 		
 		panelSkillAdvance = new PanelSkillAdvance(controller);
 		
@@ -41,9 +44,11 @@ public class PanelSkill extends JPanel {
 			}
 		});
 		
+		add(current_ap);
 		add(panelSkillAdvance);
 		add(backToMain);
 		add(skill_bg);
+		
 		
 		setVisible(true);
 	}

@@ -13,10 +13,6 @@ public class Controller {
 	private Mob temp_mob;
 	
 	private View view = null;
-	
-	private JPanel panelMain;
-	private JPanel panelInfo;
-	private JPanel panelInfoStatus;
 
 	public Controller(Character user, Map[] map, Mob[] mob) {
 		this.user = user;
@@ -119,7 +115,12 @@ public class Controller {
 		if(isOktoRankUp(skillIndex)) {
 			user.loseAp(user.getSkillAp(skillIndex+1)); // Ap¼Ò¸ð
 			user.skillRankUp(skillIndex); // SkillIndex++
+			goToSkillInfo();
 		}
+	}
+	
+	public int getSkillAp(int skillIndex) {
+		return user.getSkillAp(skillIndex);
 	}
 	
 	public String getSkillName(int skillIndex) {

@@ -53,17 +53,16 @@ public class View extends JFrame{
 		if(where.equals("메인")) {
 			tempPanel = new PanelMain(controller); 
 			contentPane.add(tempPanel);
-			
 		} else if(where.equals("정보")) {
 			tempPanel = new PanelInfo(controller);
 			contentPane.add(tempPanel);
 		} else if(where.equals("스킬")) {
 			tempPanel = new PanelSkill(controller);
 			contentPane.add(tempPanel);
-		} /*else if(where.equals("맵선택")) {
-			tempPanel = new panelSelectMap(controller);
+		} else if(where.equals("맵선택")) {
+			tempPanel = new PanelSelectMap(controller);
 			contentPane.add(tempPanel);
-		}else if(where.equals("전투")) {
+		} /*else if(where.equals("전투")) {
 			tempPanel = new panelBattleMap(controller);
 			contentPane.add(tempPanel);
 		}*/
