@@ -2,8 +2,8 @@ package Mabinogi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -18,6 +18,11 @@ public class PanelMainButtons extends JPanel {
 	JButton btnBattle;
 	JButton btnExit;
 	
+	ImageIcon info_icon = new ImageIcon(View.class.getResource("../Image/button_Info.png"));
+	ImageIcon skill_icon = new ImageIcon(View.class.getResource("../Image/button_Skill.png"));
+	ImageIcon battle_icon = new ImageIcon(View.class.getResource("../Image/button_Battle.png"));
+	ImageIcon exit_icon = new ImageIcon(View.class.getResource("../Image/button_Exit.png"));
+	
 	public PanelMainButtons(Controller controller) {
 		
 		mainButtons = new JPanel();
@@ -25,12 +30,12 @@ public class PanelMainButtons extends JPanel {
 		setBounds(375, 12, 240, 300);
 		//setBounds(325, 12, 290, 300);
 		
-		setBackground(new Color(255, 0, 0, 0));
+		setOpaque(false);
 		
-		btnInfo = new JButton("캐릭터 정보");
-		btnSkill = new JButton("스킬");
-		btnBattle = new JButton("전투");
-		btnExit = new JButton("게임 종료");
+		btnInfo = new JButton(info_icon);
+		btnSkill = new JButton(skill_icon);
+		btnBattle = new JButton(battle_icon);
+		btnExit = new JButton(exit_icon);
 		
 		setButtons();
 		
@@ -66,6 +71,21 @@ public class PanelMainButtons extends JPanel {
 		setVisible(true);
 	}
 	public void setButtons() {
+		btnInfo.setBorderPainted(false);
+		btnSkill.setBorderPainted(false);
+		btnBattle.setBorderPainted(false);
+		btnExit.setBorderPainted(false);
+		
+		btnInfo.setContentAreaFilled(false);
+		btnSkill.setContentAreaFilled(false);
+		btnBattle.setContentAreaFilled(false);
+		btnExit.setContentAreaFilled(false);
+		
+		/*btnInfo.setFocusPainted(false);
+		btnSkill.setFocusPainted(false);
+		btnBattle.setFocusPainted(false);
+		btnExit.setFocusPainted(false);*/
+		
 		btnInfo.setBounds(0, 0, 240, 60);
 		btnSkill.setBounds(0, 80, 240, 60);
 		btnBattle.setBounds(0, 160, 240, 60);

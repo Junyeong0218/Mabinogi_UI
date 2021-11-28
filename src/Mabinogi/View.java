@@ -1,6 +1,8 @@
 package Mabinogi;
 
 import java.awt.Container;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -11,10 +13,15 @@ public class View extends JFrame{
 	Controller controller;
 	
 	JPanel panelTitle;
-	JPanel panelMain;
-	JPanel panelInfo;
-	JPanel panelSkill;
+	
+	JPanel tempPanel;
+	
 	Dialog_CreateCharacter dialog_createCharater;
+	Dialog_WrongName dialog_wrongName;
+	//스웨거 TTF
+	Font font = new Font("KBIZ한마음고딕 B", Font.PLAIN, 12);
+	
+	int selectedMapIndex;
 	
 	Container contentPane;
 	
@@ -32,7 +39,8 @@ public class View extends JFrame{
 		
 		contentPane= getContentPane();
 		
-		dialog_createCharater = new Dialog_CreateCharacter(this, controller);
+		dialog_createCharater = new Dialog_CreateCharacter(this, controller, font);
+		dialog_wrongName = new Dialog_WrongName(this, controller, font);
 		
 		contentPane.add(new PanelTitle(controller));
 		
@@ -48,24 +56,43 @@ public class View extends JFrame{
 	public void goTo(String where) {
 		contentPane.removeAll();
 		
-		JPanel tempPanel = null;
+		tempPanel = null;
 		
 		if(where.equals("메인")) {
-			tempPanel = new PanelMain(controller); 
+			tempPanel = new PanelMain(controller);
 			contentPane.add(tempPanel);
-		} else if(where.equals("정보")) {
-			tempPanel = new PanelInfo(controller);
+		}
+		else if(where.equals("정보")) {
+			tempPanel = new PanelInfo(controller, font);
 			contentPane.add(tempPanel);
-		} else if(where.equals("스킬")) {
-			tempPanel = new PanelSkill(controller);
+		}
+		else if(where.equals("스킬")) {
+			tempPanel = new PanelSkill(controller, font);
 			contentPane.add(tempPanel);
-		} else if(where.equals("맵선택")) {
-			tempPanel = new PanelSelectMap(controller);
+		}
+		else if(where.equals("맵선택")) {
+			tempPanel = new PanelSelectMap(controller, 0, font);
 			contentPane.add(tempPanel);
-		} /*else if(where.equals("전투")) {
-			tempPanel = new panelBattleMap(controller);
+		} else if(where.equals("전투")) {
+			tempPanel = new PanelBattle(controller, selectedMapIndex, font, "");
 			contentPane.add(tempPanel);
-		}*/
+		}
+		tempPanel.updateUI();
+	}
+	
+	public void SelectMap(int selectedMapIndex) {
+		contentPane.removeAll();
+		tempPanel = new PanelSelectMap(controller, selectedMapIndex, font);
+		this.selectedMapIndex = selectedMapIndex; 
+		contentPane.add(tempPanel);
+		tempPanel.updateUI();
+	}
+	
+	public void moveToCoordinate() {
+		contentPane.removeAll();
+		tempPanel = new PanelBattle(controller, selectedMapIndex, font, "");
+		
+		contentPane.add(tempPanel);
 		tempPanel.updateUI();
 	}
 }

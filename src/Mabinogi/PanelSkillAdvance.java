@@ -1,6 +1,7 @@
 package Mabinogi;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -58,16 +59,19 @@ public class PanelSkillAdvance extends JPanel {
 	
 	private Controller controller;
 	
-	public PanelSkillAdvance(Controller controller) {
+	Font font;
+	
+	public PanelSkillAdvance(Controller controller, Font font) {
 		
 		this.controller = controller;
+		this.font = font;
 		
 		panelSkillAdvance = new JPanel();
 		
 		setBounds(10, 7, 610, 250);
 		setLayout(null);
 		setBackground(new Color(255, 0, 0, 0));
-		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "스킬"));
+		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "스킬", 4, 0, font));
 		
 		selectIcon();
 		
@@ -172,6 +176,9 @@ public class PanelSkillAdvance extends JPanel {
 		smash_neededAp.setBounds(300, 20, 250, 16);
 		advance_smash.setBounds(300, 49, 80, 24);
 		advance_smash.setBorderPainted(false);
+		advance_smash.setBorderPainted(false);
+		advance_smash.setContentAreaFilled(false);
+		
 		if(controller.judgeApEnough(controller.getSmashIndex())) {
 			advance_smash.setEnabled(true);
 		} else {
@@ -192,6 +199,8 @@ public class PanelSkillAdvance extends JPanel {
 		finalHit_neededAp.setBounds(300, 97, 250, 16);
 		advance_finalHit.setBounds(300, 126, 80, 24);
 		advance_finalHit.setBorderPainted(false);
+		advance_finalHit.setContentAreaFilled(false);
+		
 		if(controller.judgeApEnough(controller.getFinalHitIndex())) {
 			advance_finalHit.setEnabled(true);
 		} else {
@@ -212,6 +221,8 @@ public class PanelSkillAdvance extends JPanel {
 		defence_neededAp.setBounds(300, 174, 250, 16);
 		advance_defence.setBounds(300, 203, 80, 24);
 		advance_defence.setBorderPainted(false);
+		advance_defence.setContentAreaFilled(false);
+		
 		if(controller.judgeApEnough(controller.getDefenceIndex())) {
 			advance_defence.setEnabled(true);
 		} else {
@@ -224,6 +235,21 @@ public class PanelSkillAdvance extends JPanel {
 			}
 			
 		});
+		
+		smash_name.setFont(font);
+		smash_rank.setFont(font);
+		smash_ex.setFont(font);
+		smash_neededAp.setFont(font);
+		
+		finalHit_name.setFont(font);
+		finalHit_rank.setFont(font);
+		finalHit_ex.setFont(font);
+		finalHit_neededAp.setFont(font);
+		
+		defence_name.setFont(font);
+		defence_rank.setFont(font);
+		defence_ex.setFont(font);
+		defence_neededAp.setFont(font);
 	}
 	
 }

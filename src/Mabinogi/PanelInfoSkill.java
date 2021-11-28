@@ -1,6 +1,7 @@
 package Mabinogi;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -46,16 +47,19 @@ public class PanelInfoSkill extends JPanel {
 	
 	private Controller controller;
 	
-	public PanelInfoSkill(Controller controller) {
+	Font font;
+	
+	public PanelInfoSkill(Controller controller, Font font) {
 		
 		this.controller = controller;
+		this.font = font;
 		
 		status_skill = new JPanel();
 		
-		setBounds(320, 7, 300, 240);
+		setBounds(320, 7, 300, 230);
 		setLayout(null);
 		setBackground(new Color(255, 0, 0, 0));
-		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "스킬 정보"));
+		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "스킬 정보", 4, 0, font));
 		
 		selectIcon();
 		
@@ -155,6 +159,18 @@ public class PanelInfoSkill extends JPanel {
 		defence_icon.setBounds(15, 177, 42, 42);
 		defence_rank.setBounds(61, 177, 250, 19);
 		defence_ex.setBounds(61, 200, 250, 19);
+		
+		smash_name.setFont(font);
+		smash_rank.setFont(font);
+		smash_ex.setFont(font);
+		
+		finalHit_name.setFont(font);
+		finalHit_rank.setFont(font);
+		finalHit_ex.setFont(font);
+		
+		defence_name.setFont(font);
+		defence_rank.setFont(font);
+		defence_ex.setFont(font);
 	}
 
 }

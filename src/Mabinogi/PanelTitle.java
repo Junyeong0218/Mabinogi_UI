@@ -1,12 +1,11 @@
 package Mabinogi;
 
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelTitle extends JPanel {
@@ -15,19 +14,23 @@ public class PanelTitle extends JPanel {
 	
 	JPanel panelTitle;
 	JButton startButton;
+	JLabel bg;
 	
-	Dialog_CreateCharacter dialog;
-	
-	Image title_Background = new ImageIcon(View.class.getResource("../Image/MainTitle.png")).getImage();
-	//Image currentBg = title_Background;
+	ImageIcon title_Background = new ImageIcon(View.class.getResource("../Image/MainTitle.png"));
+	ImageIcon start_icon = new ImageIcon(View.class.getResource("../Image/button_titleStartGame.png"));
 	
 	public PanelTitle(Controller controller) {
 		
 		panelTitle = new JPanel();
 		setLayout(null);
 		
-		startButton = new JButton("시작하기");
-		startButton.setBounds(270, 240, 100, 40);
+		bg = new JLabel(title_Background);
+		bg.setBounds(0, -20, 640, 360);
+		
+		startButton = new JButton(start_icon);
+		startButton.setBounds(170, 220, 300, 60);
+		startButton.setBorderPainted(false);
+		startButton.setContentAreaFilled(false);
 		
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -36,16 +39,11 @@ public class PanelTitle extends JPanel {
 		});
 		
 		add(startButton);
+		add(bg);
 		
 		panelTitle.setBounds(0, 0, 640, 360);
 		panelTitle.setVisible(true);
 	}
-	
-	public void paint(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(title_Background, 0, -20, this);
-	}
-	
 	
 	
 }

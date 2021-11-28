@@ -10,7 +10,7 @@ public class MainTest {
 	public static void main(String[] args) throws Throwable {
 		
 		Map[] map = new Map[6];
-		Mob[] mob = new Mob[29];
+		Mob[] mob = new Mob[30];
 		Skill[] skill = new Skill[48];
 		
 		// ./MapData.txt 에서 맵 정보 불러오기

@@ -16,6 +16,36 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>src/Image/Background_Alby.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Background_Alby.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Background_Barri.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Background_Barri.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Background_Ciar.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Background_Ciar.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Background_Math.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Background_Math.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Background_Phiodh.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Background_Phiodh.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Background_Rabbie.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Background_Rabbie.png</locationURI>
+		</link>
+		<link>
 			<name>src/Image/Main.png</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/Main.png</locationURI>
@@ -26,9 +56,119 @@
 			<locationURI>PROJECT_LOC/MainTitle.png</locationURI>
 		</link>
 		<link>
+			<name>src/Image/Minimap_Down.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_Down.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Minimap_Left.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_Left.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Minimap_Right.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_Right.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Minimap_Start.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_Start.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Minimap_Up.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_Up.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Minimap_User.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_User.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Minimap_boss.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_boss.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/Minimap_disable.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/Minimap_disable.png</locationURI>
+		</link>
+		<link>
 			<name>src/Image/Shortcut.png</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/Shortcut.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Battle.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Battle.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Dungeon_Alby.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Dungeon_Alby.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Dungeon_Barri.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Dungeon_Barri.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Dungeon_Ciar.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Dungeon_Ciar.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Dungeon_Math.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Dungeon_Math.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Dungeon_Phiodh.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Dungeon_Phiodh.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Dungeon_Rabbie.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Dungeon_Rabbie.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Exit.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Exit.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Info.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Info.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Skill.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Skill.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_backTo.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_backTo.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_backTo_small.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_backTo_small.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_goTo_SelectedDungeon.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_goTo_SelectedDungeon.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_titleStartGame.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_titleStartGame.png</locationURI>
 		</link>
 		<link>
 			<name>src/Image/defence_1Rank.png</name>

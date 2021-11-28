@@ -1,11 +1,10 @@
 package Mabinogi;
 
-import javax.swing.JPanel;
+import java.util.Random;
 
 public class Controller {
 	
 	private Character user = null;
-	private Character temp_user;
 	
 	private Map[] map = null;
 	
@@ -13,6 +12,20 @@ public class Controller {
 	private Mob temp_mob;
 	
 	private View view = null;
+	
+	private int selectedPath;
+	private int start_x;
+	private int start_y;
+	private int boss_x;
+	private int boss_y;
+	private int[] selected_x;
+	private int[] selected_y;
+	private int[] selected_dir;
+	private int current_x;
+	private int current_y;
+	private int current_path;
+	
+	private int selectedMapIndex;
 
 	public Controller(Character user, Map[] map, Mob[] mob) {
 		this.user = user;
@@ -32,6 +45,10 @@ public class Controller {
 		view.dialog_createCharater.setVisible(true);
 	}
 	
+	public void inputWrongName() {
+		view.dialog_wrongName.setVisible(true);
+	}
+	
 	public void goToMain() {
 		view.goTo("메인");
 	}
@@ -48,8 +65,141 @@ public class Controller {
 		view.goTo("맵선택");
 	}
 	
-	public void goToBattleMap() {
+	public void goToBattle(int selectedMapIndex) {
+		this.selectedMapIndex = selectedMapIndex;
+		CreateMap createMap = new CreateMap();
+		selectedPath = createMap.getSelectedPath();
+		start_x = createMap.getStart_X();
+		start_y = createMap.getStart_Y();
+		boss_x = createMap.getBoss_X();
+		boss_y = createMap.getBoss_Y();
+		selected_x = createMap.getSelected_X();
+		selected_y = createMap.getSelected_Y();
+		selected_dir = createMap.getSelected_Dir();
+		current_x = start_x;
+		current_y = start_y;
+		current_path = -1;
+		selectMob(selectedMapIndex);
 		view.goTo("전투");
+	}
+	
+	public int getSelectedPath() {
+		return selectedPath; 
+	}
+	
+	public int getStart_X() {
+		return start_x;
+	}
+	
+	public int getStart_Y() {
+		return start_y;
+	}
+	
+	public int getBoss_X() {
+		return boss_x;
+	}
+	
+	public int getBoss_Y() {
+		return boss_y;
+	}
+	
+	public int[] getSelected_X() {
+		return selected_x; 
+	}
+	
+	public int[] getSelected_Y() {
+		return selected_y; 
+	}
+	
+	public int[] getSelected_Dir() {
+		return selected_dir; 
+	}
+	
+	public int getCurrent_X() {
+		return current_x;
+	}
+	
+	public int getCurrent_Y() {
+		return current_y;
+	}
+	
+	public int getCurrentPath() {
+		return current_path;
+	}
+	
+	public boolean isNext(int x, int y) {
+		int temp_cur_x = current_x;
+		int temp_cur_y = current_y;
+		switch(selected_dir[current_path+1]) {
+		case 1:
+			temp_cur_y--;
+			break;
+		case 2:
+			temp_cur_y++;
+			break;
+		case 3:
+			temp_cur_x--;
+			break;
+		case 4:
+			temp_cur_x++;
+			break;
+		}
+		return x == temp_cur_x && y == temp_cur_y;
+	}
+	
+	public boolean isBoss() {
+		return current_x == boss_x && current_y == boss_y;
+	}
+	
+	public void moveTo() {
+		current_path++;
+		current_x = selected_x[current_path];
+		current_y = selected_y[current_path];
+		selectMob(selectedMapIndex);
+		view.moveToCoordinate();
+	}
+	
+	public void selectMap(int selectedMapIndex) {
+		view.SelectMap(selectedMapIndex);
+	}
+	
+	public String getApearMob(int selectedMapIndex, int mobIndex) {
+		int i;
+		for(i = 0; i < mob.length; i++) {
+			if(mob[i].getMap().equals(map[selectedMapIndex].getMapName())) {
+				break;
+			}
+		}
+		return mob[i+mobIndex].getName();
+	}
+	
+	public void selectMob(int selectedMapIndex) {
+		if(isBoss()) {
+			temp_mob = mob[selectedMapIndex * 5 + 4];
+		} else {
+			Random rand = new Random();
+			temp_mob = mob[selectedMapIndex * 5 + rand.nextInt(4)];
+		}
+	}
+	
+	public int getMinRecommendLevel(int selectedMapIndex) {
+		int i;
+		for(i = 0; i < mob.length; i++) {
+			if(mob[i].getMap().equals(map[selectedMapIndex].getMapName())) {
+				break;
+			}
+		}
+		return mob[i].getLevel();
+	}
+	
+	public int getMaxRecommendLevel(int selectedMapIndex) {
+		int i;
+		for(i = 0; i < mob.length; i++) {
+			if(mob[i].getMap().equals(map[selectedMapIndex].getMapName())) {
+				break;
+			}
+		}
+		return mob[i+4].getLevel();
 	}
 	
 	public int getSmashIndex() {
@@ -199,4 +349,35 @@ public class Controller {
 		return user.getCritical(getUserWill());
 	}
 	
+	public String getMobName() {
+		return temp_mob.getName();
+	}
+	
+	public int getMobLevel() {
+		return temp_mob.getLevel();
+	}
+	
+	public int getMobHp() {
+		return temp_mob.getHp();
+	}
+	
+	public int getMobFullHp() {
+		return temp_mob.getFullHp();
+	}
+	
+	public int getMobMinDamage() {
+		return temp_mob.getMinDamage();
+	}
+	
+	public int getMobMaxDamage() {
+		return temp_mob.getMaxDamage();
+	}
+	
+	public int getMobDefence() {
+		return temp_mob.getDefence();
+	}
+	
+	public int getMobCritical() {
+		return temp_mob.getCritical();
+	}
 }
