@@ -10,15 +10,12 @@ public class PanelMainShortcut extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	JPanel mainShortcut;
-	
 	JLabel label_Shortcut;
 	
 	ImageIcon shortcut = new ImageIcon(View.class.getResource("../Image/Shortcut.png"));
 	
 	public PanelMainShortcut() {
 		
-		mainShortcut = new JPanel();
 		setBounds(71, 7, 154, 305);
 		setBackground(new Color(255, 0, 0, 0));
 		

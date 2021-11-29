@@ -13,8 +13,6 @@ public class PanelInfoSkill extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JPanel status_skill;
-	
 	private JLabel smash_name;
 	private JLabel smash_icon;
 	private JLabel smash_rank;
@@ -53,8 +51,6 @@ public class PanelInfoSkill extends JPanel {
 		
 		this.controller = controller;
 		this.font = font;
-		
-		status_skill = new JPanel();
 		
 		setBounds(320, 7, 300, 230);
 		setLayout(null);

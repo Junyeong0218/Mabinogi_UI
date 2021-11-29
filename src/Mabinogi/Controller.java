@@ -41,48 +41,6 @@ public class Controller {
 		user.setName(name);
 	}
 	
-	public void createCharacter() {
-		view.dialog_createCharater.setVisible(true);
-	}
-	
-	public void inputWrongName() {
-		view.dialog_wrongName.setVisible(true);
-	}
-	
-	public void goToMain() {
-		view.goTo("메인");
-	}
-	
-	public void goToInfo() {
-		view.goTo("정보");
-	}
-	
-	public void goToSkillInfo() {
-		view.goTo("스킬");
-	}
-	
-	public void goToSelectMap() {
-		view.goTo("맵선택");
-	}
-	
-	public void goToBattle(int selectedMapIndex) {
-		this.selectedMapIndex = selectedMapIndex;
-		CreateMap createMap = new CreateMap();
-		selectedPath = createMap.getSelectedPath();
-		start_x = createMap.getStart_X();
-		start_y = createMap.getStart_Y();
-		boss_x = createMap.getBoss_X();
-		boss_y = createMap.getBoss_Y();
-		selected_x = createMap.getSelected_X();
-		selected_y = createMap.getSelected_Y();
-		selected_dir = createMap.getSelected_Dir();
-		current_x = start_x;
-		current_y = start_y;
-		current_path = -1;
-		selectMob(selectedMapIndex);
-		view.goTo("전투");
-	}
-	
 	public int getSelectedPath() {
 		return selectedPath; 
 	}
@@ -127,42 +85,6 @@ public class Controller {
 		return current_path;
 	}
 	
-	public boolean isNext(int x, int y) {
-		int temp_cur_x = current_x;
-		int temp_cur_y = current_y;
-		switch(selected_dir[current_path+1]) {
-		case 1:
-			temp_cur_y--;
-			break;
-		case 2:
-			temp_cur_y++;
-			break;
-		case 3:
-			temp_cur_x--;
-			break;
-		case 4:
-			temp_cur_x++;
-			break;
-		}
-		return x == temp_cur_x && y == temp_cur_y;
-	}
-	
-	public boolean isBoss() {
-		return current_x == boss_x && current_y == boss_y;
-	}
-	
-	public void moveTo() {
-		current_path++;
-		current_x = selected_x[current_path];
-		current_y = selected_y[current_path];
-		selectMob(selectedMapIndex);
-		view.moveToCoordinate();
-	}
-	
-	public void selectMap(int selectedMapIndex) {
-		view.SelectMap(selectedMapIndex);
-	}
-	
 	public String getApearMob(int selectedMapIndex, int mobIndex) {
 		int i;
 		for(i = 0; i < mob.length; i++) {
@@ -171,15 +93,6 @@ public class Controller {
 			}
 		}
 		return mob[i+mobIndex].getName();
-	}
-	
-	public void selectMob(int selectedMapIndex) {
-		if(isBoss()) {
-			temp_mob = mob[selectedMapIndex * 5 + 4];
-		} else {
-			Random rand = new Random();
-			temp_mob = mob[selectedMapIndex * 5 + rand.nextInt(4)];
-		}
 	}
 	
 	public int getMinRecommendLevel(int selectedMapIndex) {
@@ -212,61 +125,6 @@ public class Controller {
 	
 	public int getDefenceIndex() {
 		return user.getDefenceIndex();
-	}
-	
-	public boolean judgeApEnough(int skillIndex) {
-		return user.getAbilityPoint() > user.getSkillAp( skillIndex +1 ) -1;
-	}
-	
-	public boolean isOktoRankUp(int skillIndex) {
-		if(skillIndex > 31 && skillIndex < 48) {
-			// 스킬이 defence 인 경우
-			if(skillIndex == 47) {
-				// defence 스킬이 최고랭크여서 랭크업 불가능 + dialog 구현하기
-				return false;
-			} else if(judgeApEnough(skillIndex)){
-				// abilityPoint 충분하고 defence 스킬이 랭크업 가능함.
-				return true;
-			} else {
-				// abilityPoint 가 불충분. + dialog 구현하기
-				return false;
-			}
-		} else if(skillIndex > 15 && skillIndex < 32) {
-			// 스킬이 finalHit 인 경우
-			if(skillIndex == 31) {
-				// finalHit 스킬이 최고랭크여서 랭크업 불가능 + dialog 구현하기
-				return false;
-			} else if(judgeApEnough(skillIndex)){
-				// abilityPoint 충분하고 finalHit 스킬이 랭크업 가능함.
-				return true;
-			} else {
-				// abilityPoint 가 불충분. + dialog 구현하기
-				return false;
-			}
-		} else if(skillIndex > -1 && skillIndex < 16) {
-			// 스킬이 smash 인 경우
-			if(skillIndex == 15) {
-				// smash 스킬이 최고랭크여서 랭크업 불가능 + dialog 구현하기
-				return false;
-			} else if(judgeApEnough(skillIndex)){
-				// abilityPoint 충분하고 smash 스킬이 랭크업 가능합.
-				return true;
-			} else {
-				// abilityPoint 가 불충분. + dialog 구현하기
-				return false;
-			}
-		} else {
-			// 인수로 받은 skillIndex 의 값이 범위밖의 값 + dialog 구현하기
-			return false;
-		}
-	}
-	
-	public void skillRankUp(int skillIndex) {
-		if(isOktoRankUp(skillIndex)) {
-			user.loseAp(user.getSkillAp(skillIndex+1)); // Ap소모
-			user.skillRankUp(skillIndex); // SkillIndex++
-			goToSkillInfo();
-		}
 	}
 	
 	public int getSkillAp(int skillIndex) {
@@ -379,5 +237,168 @@ public class Controller {
 	
 	public int getMobCritical() {
 		return temp_mob.getCritical();
+	}
+	
+	public boolean judgeApEnough(int skillIndex) {
+		return user.getAbilityPoint() > user.getSkillAp( skillIndex +1 ) -1;
+	}
+	
+	public boolean isOktoRankUp(int skillIndex) {
+		if(skillIndex > 31 && skillIndex < 48) {
+			// 스킬이 defence 인 경우
+			if(skillIndex == 47) {
+				// defence 스킬이 최고랭크여서 랭크업 불가능 + dialog 구현하기
+				return false;
+			} else if(judgeApEnough(skillIndex)){
+				// abilityPoint 충분하고 defence 스킬이 랭크업 가능함.
+				return true;
+			} else {
+				// abilityPoint 가 불충분. + dialog 구현하기
+				return false;
+			}
+		} else if(skillIndex > 15 && skillIndex < 32) {
+			// 스킬이 finalHit 인 경우
+			if(skillIndex == 31) {
+				// finalHit 스킬이 최고랭크여서 랭크업 불가능 + dialog 구현하기
+				return false;
+			} else if(judgeApEnough(skillIndex)){
+				// abilityPoint 충분하고 finalHit 스킬이 랭크업 가능함.
+				return true;
+			} else {
+				// abilityPoint 가 불충분. + dialog 구현하기
+				return false;
+			}
+		} else if(skillIndex > -1 && skillIndex < 16) {
+			// 스킬이 smash 인 경우
+			if(skillIndex == 15) {
+				// smash 스킬이 최고랭크여서 랭크업 불가능 + dialog 구현하기
+				return false;
+			} else if(judgeApEnough(skillIndex)){
+				// abilityPoint 충분하고 smash 스킬이 랭크업 가능합.
+				return true;
+			} else {
+				// abilityPoint 가 불충분. + dialog 구현하기
+				return false;
+			}
+		} else {
+			// 인수로 받은 skillIndex 의 값이 범위밖의 값 + dialog 구현하기
+			return false;
+		}
+	}
+	
+	public void skillRankUp(int skillIndex) {
+		if(isOktoRankUp(skillIndex)) {
+			user.loseAp(user.getSkillAp(skillIndex+1)); // Ap소모
+			user.skillRankUp(skillIndex); // SkillIndex++
+			goToSkillInfo();
+		}
+	}
+	
+	public boolean isNext(int x, int y) {
+		int temp_cur_x = current_x;
+		int temp_cur_y = current_y;
+		switch(selected_dir[current_path+1]) {
+		case 1:
+			temp_cur_y--;
+			break;
+		case 2:
+			temp_cur_y++;
+			break;
+		case 3:
+			temp_cur_x--;
+			break;
+		case 4:
+			temp_cur_x++;
+			break;
+		}
+		return x == temp_cur_x && y == temp_cur_y;
+	}
+	
+	public boolean isBoss() {
+		return current_x == boss_x && current_y == boss_y;
+	}
+	
+	public void moveTo() {
+		if(isDead(temp_mob)) {
+			current_path++;
+			current_x = selected_x[current_path];
+			current_y = selected_y[current_path];
+			selectMob(selectedMapIndex);
+			view.moveToCoordinate("다음 방으로 이동합니다.");
+		} else {
+			view.refreshBattleMap("아직 적이 남아있습니다.");
+			view.refreshBattleMap("적을 처치해야 다음 방으로 이동할 수 있습니다.");
+		}
+	}
+	
+	public void toggleBattleControl(int controlIndex) {
+		if(controlIndex == 0) {
+			view.refreshBattleMap(1);
+		} else {
+			view.refreshBattleMap(0);
+		}
+	}
+	
+	public void selectMap(int selectedMapIndex) {
+		view.SelectMap(selectedMapIndex);
+	}
+	
+	public void selectMob(int selectedMapIndex) {
+		if(isBoss()) {
+			temp_mob = mob[selectedMapIndex * 5 + 4];
+		} else {
+			Random rand = new Random();
+			temp_mob = mob[selectedMapIndex * 5 + rand.nextInt(4)];
+		}
+	}
+	
+	public void createCharacter() {
+		view.dialog_createCharater.setVisible(true);
+	}
+	
+	public void inputWrongName() {
+		view.dialog_wrongName.setVisible(true);
+	}
+	
+	public void goToMain() {
+		view.goTo("메인");
+	}
+	
+	public void goToInfo() {
+		view.goTo("정보");
+	}
+	
+	public void goToSkillInfo() {
+		view.goTo("스킬");
+	}
+	
+	public void goToSelectMap() {
+		view.goTo("맵선택");
+	}
+	
+	public void goToBattle(int selectedMapIndex) {
+		this.selectedMapIndex = selectedMapIndex;
+		CreateMap createMap = new CreateMap();
+		selectedPath = createMap.getSelectedPath();
+		start_x = createMap.getStart_X();
+		start_y = createMap.getStart_Y();
+		boss_x = createMap.getBoss_X();
+		boss_y = createMap.getBoss_Y();
+		selected_x = createMap.getSelected_X();
+		selected_y = createMap.getSelected_Y();
+		selected_dir = createMap.getSelected_Dir();
+		current_x = start_x;
+		current_y = start_y;
+		current_path = -1;
+		selectMob(selectedMapIndex);
+		view.goTo("전투");
+	}
+	
+	public boolean isDead(Mob mob) {
+		return getMobHp() < 1;
+	}
+	
+	public boolean isDead(Character user) {
+		return user.getHp() < 1;
 	}
 }

@@ -13,7 +13,6 @@ public class PanelSelectMap extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	JPanel panelSelectMap;
 	JPanel panelSelectMapButtons;
 	JPanel panelSelectMapInfo;
 	
@@ -34,7 +33,6 @@ public class PanelSelectMap extends JPanel{
 	
 	public PanelSelectMap(Controller controller, int selectedMapIndex, Font font) {
 		
-		panelSelectMap = new JPanel();
 		setBounds(0, 0, 640, 360);
 		setLayout(null);
 		setOpaque(false);

@@ -13,20 +13,20 @@ public class PanelBattleLog extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JLabel log1 = new JLabel();
-	JLabel log2 = new JLabel();
-	JLabel log3 = new JLabel();
-	JLabel log4 = new JLabel();
-	JLabel log5 = new JLabel();
-	JLabel log6 = new JLabel();
-	JLabel log7 = new JLabel();
-	JLabel log8 = new JLabel();
-	JLabel log9 = new JLabel();
-	JLabel log10 = new JLabel();
+	JLabel log1 = new JLabel("");
+	JLabel log2 = new JLabel("");
+	JLabel log3 = new JLabel("");
+	JLabel log4 = new JLabel("");
+	JLabel log5 = new JLabel("");
+	JLabel log6 = new JLabel("");
+	JLabel log7 = new JLabel("");
+	JLabel log8 = new JLabel("");
+	JLabel log9 = new JLabel("");
+	JLabel log10 = new JLabel("");
 	
 	Font font;
 	
-	public PanelBattleLog(Controller controller, Font font, String string) {
+	public PanelBattleLog(Controller controller, Font font, String battleLog) {
 		
 		this.font = font;
 		
@@ -36,9 +36,9 @@ public class PanelBattleLog extends JPanel {
 		setFont(font);
 		setBorder(new TitledBorder( new LineBorder(new Color(0, 0, 0)), "전투로그", 4, 0, font));
 		
-		setLabelText();
+		setFont();
 		
-		log10.setText(string);
+		setLabelText(battleLog);
 		
 		add(log1);
 		add(log2);
@@ -54,7 +54,7 @@ public class PanelBattleLog extends JPanel {
 		setVisible(true);
 	}
 	
-	public void setLabelText() {
+	public void setLabelText(String battleLog) {
 		log1.setText(log2.getText());
 		log2.setText(log3.getText());
 		log3.setText(log4.getText());
@@ -64,6 +64,20 @@ public class PanelBattleLog extends JPanel {
 		log7.setText(log8.getText());
 		log8.setText(log9.getText());
 		log9.setText(log10.getText());
+		log10.setText(battleLog);
+	}
+	
+	public void setFont() {
+		log1.setFont(font);
+		log2.setFont(font);
+		log3.setFont(font);
+		log4.setFont(font);
+		log5.setFont(font);
+		log6.setFont(font);
+		log7.setFont(font);
+		log8.setFont(font);
+		log9.setFont(font);
+		log10.setFont(font);
 	}
 
 }

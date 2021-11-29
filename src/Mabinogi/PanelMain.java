@@ -8,7 +8,6 @@ public class PanelMain extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	JPanel panelMain;
 	JPanel panelMainShortcut;
 	JPanel panelMainButtons;
 	
@@ -18,7 +17,6 @@ public class PanelMain extends JPanel{
 	
 	public PanelMain(Controller controller) {
 		
-		panelMain = new JPanel();
 		setLayout(null);
 		setBounds(0, 0, 640, 360);
 		

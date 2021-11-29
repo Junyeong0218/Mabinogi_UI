@@ -12,8 +12,7 @@ import javax.swing.JPanel;
 public class PanelSkill extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	JPanel panelSkill;
+	
 	JPanel panelSkillAdvance;
 	
 	JLabel skill_bg;
@@ -25,8 +24,6 @@ public class PanelSkill extends JPanel {
 	ImageIcon backTo_icon = new ImageIcon(View.class.getResource("../Image/button_backTo.png"));
 	
 	public PanelSkill(Controller controller, Font font) {
-		
-		panelSkill = new JPanel();
 		
 		setBounds(0, 0, 640, 360);
 		setLayout(null);

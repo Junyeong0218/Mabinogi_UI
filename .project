@@ -106,6 +106,36 @@
 			<locationURI>PROJECT_LOC/button_Battle.png</locationURI>
 		</link>
 		<link>
+			<name>src/Image/button_Battle_Attack.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Battle_Attack.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Battle_Defence.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Battle_Defence.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Battle_Escape.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Battle_Escape.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Battle_Smash.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Battle_Smash.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Battle_default.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Battle_default.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_Battle_finalHit.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_Battle_finalHit.png</locationURI>
+		</link>
+		<link>
 			<name>src/Image/button_Dungeon_Alby.png</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/button_Dungeon_Alby.png</locationURI>
@@ -154,6 +184,11 @@
 			<name>src/Image/button_backTo.png</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/button_backTo.png</locationURI>
+		</link>
+		<link>
+			<name>src/Image/button_backTo2.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/button_backTo2.png</locationURI>
 		</link>
 		<link>
 			<name>src/Image/button_backTo_small.png</name>

@@ -14,6 +14,7 @@ public class PanelBattle extends JPanel {
 	JPanel panelBattleMob;
 	JPanel panelBattleMinimap;
 	JPanel panelBattleLog;
+	JPanel panelBattleControl;
 	
 	JLabel bg_selectedMap;
 	
@@ -25,7 +26,7 @@ public class PanelBattle extends JPanel {
 	ImageIcon bg_Phiodh = new ImageIcon(View.class.getResource("../Image/Background_Phiodh.png"));
 	ImageIcon selectedMap_icon;
 	
-	public PanelBattle(Controller controller, int selectedMapIndex, Font font, String string) {
+	public PanelBattle(Controller controller, int selectedMapIndex, Font font, JPanel panelBattleLog, JPanel panelBattleControl) {
 		
 	setBounds(0, 0, 640, 360);
 	setLayout(null);
@@ -38,12 +39,14 @@ public class PanelBattle extends JPanel {
 	panelBattleMinimap = new PanelBattleMinimap(controller, controller.getCurrent_X(), controller.getCurrent_Y());
 	panelBattleChar = new PanelBattleChar(controller, font);
 	panelBattleMob = new PanelBattleMob(controller, font);
-	panelBattleLog = new PanelBattleLog(controller, font, string);
+	this.panelBattleLog = panelBattleLog;
+	this.panelBattleControl = panelBattleControl;
 	
 	add(panelBattleChar);
 	add(panelBattleMob);
 	add(panelBattleMinimap);
-	add(panelBattleLog);
+	add(this.panelBattleLog);
+	add(this.panelBattleControl);
 	add(bg_selectedMap);
 	
 	setVisible(true);
@@ -71,7 +74,6 @@ public class PanelBattle extends JPanel {
 			selectedMap_icon = bg_Phiodh;
 			break;
 		}
-		
 	}
 
 }

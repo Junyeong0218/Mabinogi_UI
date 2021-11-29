@@ -13,8 +13,6 @@ public class PanelInfoStatus extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JPanel status;
-	
 	Controller controller;
 	
 	Font font;
@@ -46,8 +44,6 @@ public class PanelInfoStatus extends JPanel {
 		
 		this.controller = controller;
 		this.font = font;
-		
-		status = new JPanel();
 		
 		setBounds(10, 7, 300, 300);
 		setLayout(new GridLayout(11, 2));

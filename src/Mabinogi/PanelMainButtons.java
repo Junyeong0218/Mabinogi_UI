@@ -11,8 +11,6 @@ public class PanelMainButtons extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JPanel mainButtons;
-	
 	JButton btnInfo;
 	JButton btnSkill;
 	JButton btnBattle;
@@ -25,7 +23,6 @@ public class PanelMainButtons extends JPanel {
 	
 	public PanelMainButtons(Controller controller) {
 		
-		mainButtons = new JPanel();
 		setLayout(null);
 		setBounds(375, 12, 240, 300);
 		//setBounds(325, 12, 290, 300);

@@ -11,8 +11,6 @@ public class PanelSelectMapButtons extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JPanel panelSelectMapButtons;
-	
 	private JButton dungeon_alby;
 	private JButton dungeon_ciar;
 	private JButton dungeon_rabbie;
@@ -29,7 +27,6 @@ public class PanelSelectMapButtons extends JPanel {
 	
 	public PanelSelectMapButtons(Controller controller, int selectedMapIndex) {
 		
-		panelSelectMapButtons = new JPanel();
 		setBounds(10, 7, 200, 300);
 		setLayout(null);
 		setOpaque(false);

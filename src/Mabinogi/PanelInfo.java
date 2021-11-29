@@ -14,7 +14,6 @@ public class PanelInfo extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JPanel panelInfo;
 	JPanel panelInfoStatus;
 	JPanel panelInfoSkill;
 	
@@ -27,7 +26,6 @@ public class PanelInfo extends JPanel {
 	
 	public PanelInfo(Controller controller, Font font) {
 		
-		panelInfo = new JPanel();		
 		//setBounds(10, 7, 605, 300);
 		setBounds(0, 0, 640, 360);
 		setLayout(null);

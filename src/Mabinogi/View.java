@@ -13,8 +13,10 @@ public class View extends JFrame{
 	Controller controller;
 	
 	JPanel panelTitle;
-	
 	JPanel tempPanel;
+	
+	PanelBattleLog panelBattleLog;
+	PanelBattleControl panelBattleControl;
 	
 	Dialog_CreateCharacter dialog_createCharater;
 	Dialog_WrongName dialog_wrongName;
@@ -71,10 +73,13 @@ public class View extends JFrame{
 			contentPane.add(tempPanel);
 		}
 		else if(where.equals("∏ º±≈√")) {
-			tempPanel = new PanelSelectMap(controller, 0, font);
+			this.selectedMapIndex = 0;
+			tempPanel = new PanelSelectMap(controller, selectedMapIndex, font);
 			contentPane.add(tempPanel);
 		} else if(where.equals("¿¸≈ı")) {
-			tempPanel = new PanelBattle(controller, selectedMapIndex, font, "");
+			panelBattleLog = new PanelBattleLog(controller, font, "");
+			panelBattleControl = new PanelBattleControl(controller, 0);
+			tempPanel = new PanelBattle(controller, selectedMapIndex, font, panelBattleLog, panelBattleControl);
 			contentPane.add(tempPanel);
 		}
 		tempPanel.updateUI();
@@ -88,10 +93,26 @@ public class View extends JFrame{
 		tempPanel.updateUI();
 	}
 	
-	public void moveToCoordinate() {
+	public void moveToCoordinate(String battleLog) {
 		contentPane.removeAll();
-		tempPanel = new PanelBattle(controller, selectedMapIndex, font, "");
-		
+		panelBattleLog.setLabelText(battleLog);
+		tempPanel = new PanelBattle(controller, selectedMapIndex, font, panelBattleLog, panelBattleControl);
+		contentPane.add(tempPanel);
+		tempPanel.updateUI();
+	}
+	
+	public void refreshBattleMap(String battleLog) {
+		contentPane.removeAll();
+		panelBattleLog.setLabelText(battleLog);
+		tempPanel = new PanelBattle(controller, selectedMapIndex, font, panelBattleLog, panelBattleControl);
+		contentPane.add(tempPanel);
+		tempPanel.updateUI();
+	}
+	
+	public void refreshBattleMap(int controlIndex) {
+		contentPane.removeAll();
+		panelBattleControl = new PanelBattleControl(controller, controlIndex);
+		tempPanel = new PanelBattle(controller, selectedMapIndex, font, panelBattleLog, panelBattleControl);
 		contentPane.add(tempPanel);
 		tempPanel.updateUI();
 	}

@@ -10,8 +10,6 @@ public class PanelSelectMapInfo extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	JPanel panelSelectMapInfo;
-	
 	JLabel lbl_recommendLevel;
 	JLabel recommendLevel;
 	JLabel lbl_apearMob;

@@ -11,8 +11,6 @@ import javax.swing.JPanel;
 public class PanelTitle extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	
-	JPanel panelTitle;
 	JButton startButton;
 	JLabel bg;
 	
@@ -20,8 +18,6 @@ public class PanelTitle extends JPanel {
 	ImageIcon start_icon = new ImageIcon(View.class.getResource("../Image/button_titleStartGame.png"));
 	
 	public PanelTitle(Controller controller) {
-		
-		panelTitle = new JPanel();
 		setLayout(null);
 		
 		bg = new JLabel(title_Background);
@@ -41,8 +37,8 @@ public class PanelTitle extends JPanel {
 		add(startButton);
 		add(bg);
 		
-		panelTitle.setBounds(0, 0, 640, 360);
-		panelTitle.setVisible(true);
+		setBounds(0, 0, 640, 360);
+		setVisible(true);
 	}
 	
 	

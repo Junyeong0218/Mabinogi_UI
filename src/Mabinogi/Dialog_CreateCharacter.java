@@ -15,6 +15,7 @@ public class Dialog_CreateCharacter extends JDialog {
 		super(frame, "닉네임을 입력해주세요.");
 		setLayout(new BorderLayout());
 		jtxt.setHorizontalAlignment(JLabel.CENTER);
+		jtxt.setFont(font);
 		okBtn.setFont(font);
 		add(jtxt, BorderLayout.CENTER);
 		add(okBtn, BorderLayout.SOUTH);

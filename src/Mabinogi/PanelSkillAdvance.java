@@ -15,8 +15,6 @@ import javax.swing.border.TitledBorder;
 public class PanelSkillAdvance extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	JPanel panelSkillAdvance;
 	
 	private JLabel smash_name;
 	private JLabel smash_icon;
@@ -65,8 +63,6 @@ public class PanelSkillAdvance extends JPanel {
 		
 		this.controller = controller;
 		this.font = font;
-		
-		panelSkillAdvance = new JPanel();
 		
 		setBounds(10, 7, 610, 250);
 		setLayout(null);
