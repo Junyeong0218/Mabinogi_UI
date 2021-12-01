@@ -105,6 +105,7 @@ public class MainTest {
 			String s_temp_2 = stk.nextToken();
 			int i_temp_ap = Integer.parseInt(stk.nextToken());
 			double d_temp_damage = Double.parseDouble(stk.nextToken());
+			int i_temp_stamina = Integer.parseInt(stk.nextToken());
 			
 			if(i_temp_index > 31) {
 				// defence 스킬
@@ -117,7 +118,7 @@ public class MainTest {
 				s_temp_ex = "적에게 큰 데미지 (" + (int)(d_temp_damage*100) + "%) 를 줄 수 있다";
 			}
 			
-			skill[i_temp_index] = new Skill(s_temp_1, s_temp_2, i_temp_ap, d_temp_damage, s_temp_ex);
+			skill[i_temp_index] = new Skill(s_temp_1, s_temp_2, i_temp_ap, d_temp_damage, i_temp_stamina, s_temp_ex);
 			
 			temp = br.readLine();
 		}

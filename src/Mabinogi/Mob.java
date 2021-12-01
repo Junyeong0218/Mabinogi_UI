@@ -35,10 +35,6 @@ public class Mob {
 		return hp;
 	}
 
-	public int getExp() {
-		return exp;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -63,9 +59,9 @@ public class Mob {
 		return defence;
 	}
 
-	public int getExp(int level)
+	public int getExp(int userlevel)
 	{
-		if(level - this.level > 9)
+		if(userlevel - this.level > 9)
 		{
 			return (int)(exp * 0.5); 
 		}
@@ -83,15 +79,14 @@ public class Mob {
 		return this.minMoney + ( this.maxMoney - this.minMoney ) * temp / 100;
 	}	
 	
-	public void attackUser(Character character)
+	public int attackUser(Character user, boolean isUsed)
 	{
-		boolean isCritical = isCritical();
 		int selectedDamage;
 		
 		Random rand = new Random();
 		int temp = rand.nextInt(101); // 0 ~ 100 까지 난수
 		
-		if( isCritical )
+		if( isCritical() )
 		{
 			selectedDamage = ( minDamage + (maxDamage - minDamage) * temp / 100 ) * 2;
 		}
@@ -100,12 +95,26 @@ public class Mob {
 			selectedDamage = minDamage + (maxDamage - minDamage) * temp / 100;
 		}
 		
-		character.attacked(selectedDamage);
+		int finalDamage = user.attacked(selectedDamage, isUsed);
+		
+		return finalDamage;
 	}
 	
-	public void attacked(int damage)
+	public int attacked(int damage, int skillIndex)
 	{
-		this.hp -= ( damage - this.defence );
+		int finalDamage = damage - defence;
+		
+		if(skillIndex == 2) {
+			hp -= finalDamage * 2;
+		} else {
+			hp -= finalDamage;
+		}
+		
+		if(hp < 0) {
+			hp = 0;
+		}
+		
+		return finalDamage;
 	}
 	
 	public boolean isDead()

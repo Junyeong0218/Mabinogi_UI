@@ -30,6 +30,7 @@ public class CreateMap {
 			// 4 ~ 8
 			selectedPath = rand.nextInt(MAXPATH-MINPATH+1)+MINPATH;
 			
+			
 			selected_x = new int[selectedPath];
 			selected_y = new int[selectedPath];
 			selected_dir = new int[selectedPath+1];

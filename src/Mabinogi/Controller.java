@@ -2,7 +2,7 @@ package Mabinogi;
 
 import java.util.Random;
 
-public class Controller {
+public class Controller implements Runnable{
 	
 	private Character user = null;
 	
@@ -26,6 +26,9 @@ public class Controller {
 	private int current_path;
 	
 	private int selectedMapIndex;
+	private int battleEncounter;
+	private int tempEncounter;
+	private boolean isUsedDefence = false;
 
 	public Controller(Character user, Map[] map, Mob[] mob) {
 		this.user = user;
@@ -200,7 +203,7 @@ public class Controller {
 	}
 	
 	public int getUserDefence() {
-		return user.getDefence(getUserStr());
+		return user.getDefence(getUserStr(), isUsedDefence);
 	}
 	
 	public int getUserCritical() {
@@ -345,11 +348,16 @@ public class Controller {
 	
 	public void selectMob(int selectedMapIndex) {
 		if(isBoss()) {
+			temp_mob = null;
 			temp_mob = mob[selectedMapIndex * 5 + 4];
 		} else {
 			Random rand = new Random();
+			temp_mob = null;
 			temp_mob = mob[selectedMapIndex * 5 + rand.nextInt(4)];
 		}
+		battleEncounter = 0;
+		tempEncounter = 0;
+		isUsedDefence = false;
 	}
 	
 	public void createCharacter() {
@@ -400,5 +408,121 @@ public class Controller {
 	
 	public boolean isDead(Character user) {
 		return user.getHp() < 1;
+	}
+	
+	public void isUsedDefence() {
+		if(tempEncounter == battleEncounter) {
+			isUsedDefence = true;
+		} else {
+			isUsedDefence = false;
+		}
+	}
+	
+	public boolean isOkToUse(int skillIndex) {
+		return user.getStamina() > user.getSkillStamina(skillIndex)-1;
+	}
+	
+	public void attackToMob(int skillIndex) {
+		int finalDamage;
+		isUsedDefence();
+		if(isDead(temp_mob)) {
+			view.refreshBattleMap("이미 죽은 몬스터입니다.");
+			view.refreshBattleMap("다음 맵으로 이동해주세요. (미니맵 클릭)");
+		} else {
+			if(isOkToUse(skillIndex)) {
+				// 스테미너 충분한지 판단
+				user.loseStamina(skillIndex);
+				if(skillIndex < 3) {
+					// 기본 공격 = 0 / 스매시 = 1 / 파이널어택 = 2
+					finalDamage = user.attackMob(temp_mob, skillIndex);
+					if(skillIndex == 1) {
+						view.refreshBattleMap("[ 스매시 ] 스킬 사용!");
+						view.refreshBattleMap(getMobName() + "에게 " + finalDamage + " 의 데미지를 주었습니다.");
+						completeAttack();
+					} else if(skillIndex == 2) {
+						view.refreshBattleMap("[ 파이널 어택 ] 스킬 사용!");
+						view.refreshBattleMap(getMobName() + "에게 " + finalDamage + " 의 데미지를 2회 주었습니다.");
+						completeAttack();
+					} else {
+						// 기본 공격
+						view.refreshBattleMap(getMobName() + "에게 " + finalDamage + " 의 데미지를 주었습니다.");
+						completeAttack();
+					}
+				} else if(skillIndex == 3) {
+					tempEncounter = battleEncounter;
+					isUsedDefence();
+					view.refreshBattleMap("[ 디펜스 ] 스킬 사용!");
+					view.refreshBattleMap("한 턴 간 방어력이 " + user.getRaisedDefence() + "만큼 증가합니다.");
+					completeAttack();
+				}
+			} else {
+				// 스테미너가 충분하지 않을 경우
+				view.refreshBattleMap("스테미너가 충분하지 않습니다.");
+			}
+		}
+	}
+	
+	public void completeAttack() {
+		if(isDead(temp_mob)) {
+			view.refreshBattleMap(0);
+			view.refreshBattleMap(temp_mob.getName() + "을 쓰러뜨렸습니다.");
+			if(isBoss()) {
+				view.refreshBattleMap(user.earnExp(temp_mob.getExp(user.getLevel())) + " 의 경험치와 " + user.earnMoney(temp_mob.getMoney()) +" 의 골드를 획득했습니다.");
+				if(user.isLevelUp(user.getLevel())) {
+					user.levelup();
+					view.refreshBattleMap("레벨이 " + user.getLevel() + "로 올랐습니다!");
+				}
+				view.refreshBattleMap("던전 클리어!");
+				view.refreshBattleMap("3초 후 던전 선택 화면으로 돌아갑니다.");
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				goToSelectMap();
+			} else {
+				view.refreshBattleMap(user.earnExp(temp_mob.getExp(user.getLevel())) + " 의 경험치와 " + user.earnMoney(temp_mob.getMoney()) +" 의 골드를 획득했습니다.");
+				if(user.isLevelUp(user.getLevel())) {
+					user.levelup();
+					view.refreshBattleMap("레벨이 " + user.getLevel() + "로 올랐습니다!");
+				}
+				view.refreshBattleMap("다음 맵으로 이동해주세요. (미니맵 클릭)");
+			}
+		} else {
+			view.refreshBattleMap(0);
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			attackToUser();
+			battleEncounter++;
+		}
+	}
+	
+	public void attackToUser() {
+		int finalDamage = temp_mob.attackUser(user, isUsedDefence); // 순수 데미지 - 방어력 = 입은 데미지 반환
+		
+		view.refreshBattleMap(getMobName() + "에게 " + finalDamage + " 의 데미지를 입었습니다.");
+		
+		if(isDead(user)) {
+			user.loseExp(user.getLevel());
+			view.refreshBattleMap(getMobName() + "에 의해 캐릭터가 사망했습니다.");
+			view.refreshBattleMap("경험치가 감소합니다.");
+			view.refreshBattleMap("3초 후 던전 선택 화면으로 돌아갑니다.");
+			user.setFullUserCondition();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				//e.printStackTrace();
+			}
+			goToSelectMap();
+		}
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

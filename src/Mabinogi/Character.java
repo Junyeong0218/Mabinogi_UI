@@ -5,9 +5,9 @@ import java.util.Random;
 public class Character {
 
 	private String name;
-	private int level, abilityPoint, rebirth, exp, money, fullHp, fullStamina; // 레벨 1~50, 어빌++, 환생횟수0
+	private int level, abilityPoint, rebirth, exp, money, hp, stamina, fullHp, fullStamina; // 레벨 1~50, 어빌++, 환생횟수0
 	
-	private double d_hp, d_stamina, d_str, d_will;
+	private double d_str, d_will;
 	
 	private int[] neededExp = new int[50];
 	
@@ -41,13 +41,13 @@ public class Character {
 		this.exp = 0;
 		this.money = 0;
 		
-		this.d_hp = 100 + HP_LEVELUP;
-		this.d_stamina = 100 + STAMINA_LEVELUP;
+		this.hp = 100 + HP_LEVELUP;
+		this.stamina = 100 + STAMINA_LEVELUP;
 		this.d_str = 45 + STR_LEVELUP;
 		this.d_will = 25 + WILL_LEVELUP;
 		
-		this.fullHp = (int)d_hp;
-		this.fullStamina = (int)d_stamina;
+		this.fullHp = hp;
+		this.fullStamina = stamina;
 		
 		this.skill = skill;
 		this.smashIndex = 0;
@@ -143,6 +143,20 @@ public class Character {
 		return skill[skillIndex].getAp();
 	}
 	
+	public int getSkillStamina(int skillIndex) {
+		int stamina = 0;
+		
+		if(skillIndex == 1) {
+			stamina = skill[smashIndex].getStamina();
+		} else if(skillIndex == 2) {
+			stamina = skill[finalHitIndex].getStamina();
+		}else if(skillIndex == 3) {
+			stamina = skill[defenceIndex].getStamina();
+		}
+		
+		return stamina;
+	}
+	
 	public void skillRankUp(int skillIndex) {
 		if(skillIndex > 31) {
 			defenceIndex++;
@@ -185,14 +199,14 @@ public class Character {
 		return money;
 	}
 	
-	public double getHp()
+	public int getHp()
 	{
-		return d_hp;
+		return hp;
 	}
 	
-	public double getStamina()
+	public int getStamina()
 	{
-		return d_stamina;
+		return stamina;
 	}
 	
 	public double getStr()
@@ -225,9 +239,17 @@ public class Character {
 		return (int)(d_str / MIN_DAMAGE_DIV);
 	}
 	
-	public int getDefence(double d_str)
+	public int getRaisedDefence() {
+		return (int)((d_str / DEFENCE_DIV) * skill[defenceIndex].getDamage());
+	}
+	
+	public int getDefence(double d_str, boolean isUsed)
 	{
-		return (int)(d_str / DEFENCE_DIV);
+		if(isUsed) {
+			return (int)((d_str / DEFENCE_DIV) + (d_str / DEFENCE_DIV) * skill[defenceIndex].getDamage());
+		} else {
+			return (int)(d_str / DEFENCE_DIV);
+		}
 	}
 	
 	public int getCritical(double d_will)
@@ -245,18 +267,44 @@ public class Character {
 		this.name = name;
 	}
 	
-	public void earnExp(int exp)
+	public int earnExp(int exp)
 	{
 		this.exp += exp;
+		
+		return exp;
 	}
 	
-	public void earnMoney(int money)
+	public void loseStamina(int skillIndex) {
+		if(skillIndex == 1) {
+			stamina -= skill[smashIndex].getStamina();
+		} else if(skillIndex == 2) {
+			stamina -= skill[finalHitIndex].getStamina();
+		} else if(skillIndex == 3) {
+			stamina -= skill[defenceIndex].getStamina();
+		} 
+	}
+	
+	public void loseExp(int level) {
+		exp -= neededExp[level] * 0.05;
+		if(exp < 0) {
+			exp = 0;
+		}
+	}
+	
+	public int earnMoney(int money)
 	{
 		this.money += money;
+		
+		return money;
 	}
 	
 	public void loseAp(int ap) {
 		this.abilityPoint -= ap;
+	}
+	
+	public void setFullUserCondition() {
+		hp = fullHp;
+		stamina = fullStamina;
 	}
 	
 	public void levelup()
@@ -266,16 +314,20 @@ public class Character {
 		this.abilityPoint++;
 		
 		// Hp = 100 + 업당 15 * (1 + 0.1 * 환생횟수)
-		this.d_hp += HP_LEVELUP * (1 + HP_REBIRTH * rebirth);
+		hp = fullHp;
+		hp += HP_LEVELUP * (1 + HP_REBIRTH * rebirth);
+		fullHp = hp;
 		
 		// Stamina = 100 + 업당 5 * (1 + 0.05 * 환생횟수)
-		this.d_stamina += STAMINA_LEVELUP * (1 + STAMINA_REBIRTH * rebirth);
+		stamina = fullStamina;
+		stamina += STAMINA_LEVELUP * (1 + STAMINA_REBIRTH * rebirth);
+		fullStamina = stamina;
 		
 		// str = 45 + 업당 7.5 * (1 + 0.2 * 환생횟수) // 환생 1회당 증가랑 20%증가 // 최종스텟 = 420(0환생시)
-		this.d_str += STR_LEVELUP + (1 + STR_REBIRTH * rebirth);
+		d_str += STR_LEVELUP + (1 + STR_REBIRTH * rebirth);
 		
 		// will =  25 + 업당 2.5 * (1 + 0.05 * 환생횟수) // 환생 1회당 증가량 5% 증가 // 최종스텟 = 150(0환생시)
-		this.d_will += WILL_LEVELUP + (1 + WILL_REBIRTH * rebirth);
+		d_will += WILL_LEVELUP + (1 + WILL_REBIRTH * rebirth);
 	}
 	
 	public boolean isLevelUp(int level)
@@ -290,40 +342,57 @@ public class Character {
 		}
 	}
 	
-	public void attackMob(Mob mob)
+	public int attackMob(Mob mob, int skillIndex)
 	{
-		int maxDamage = (int)getMaxDamage(this.d_str);
-		int minDamage = (int)getMinDamage(this.d_str);
-		boolean isCritical = isCritical();
+		int maxDamage = getMaxDamage(d_str);
+		int minDamage = getMinDamage(d_str);
 		int selectedDamage;
+		double skillDamage = 1;
+		
+		if(skillIndex == 0) {
+			skillDamage = 1;
+		} else if(skillIndex == 1) {
+			skillDamage = skill[smashIndex].getDamage();
+		} else if(skillIndex == 2) {
+			skillDamage = skill[finalHitIndex].getDamage();
+		}
 		
 		Random rand = new Random();
 		int temp = rand.nextInt(101); // 0 ~ 100 까지 난수
 		
 		// 크리티컬 발동시 데미지 2배 적용
-		if( isCritical )
+		if( isCritical() )
 		{
-			selectedDamage = ( minDamage + (maxDamage - minDamage) * temp / 100 ) * 2;
+			selectedDamage = (int)(( minDamage + (maxDamage - minDamage) * temp / 100 ) * skillDamage * 2);
 		}
 		else
 		{
-			selectedDamage = minDamage + (maxDamage - minDamage) * temp / 100;
+			selectedDamage = (int)((minDamage + (maxDamage - minDamage) * temp / 100) * skillDamage);
 		}
 		
-		mob.attacked(selectedDamage);
+		int finalDamage = mob.attacked(selectedDamage, skillIndex);
 		
+		return finalDamage;
 	}
 	
-	public void attacked(int damage)
+	public int attacked(int damage, boolean isUsed)
 	{
-		int defence = (int)getDefence(this.d_str);
+		int defence = getDefence(d_str, isUsed);
 		
-		this.d_hp -= (damage - defence) ;
+		int finalDamage = damage - defence;
+		
+		hp -= (finalDamage);
+		
+		if(hp < 0) {
+			hp = 0;
+		}
+		
+		return finalDamage;
 	}
 	
 	public boolean isDead()
 	{
-		if(this.d_hp < 1)
+		if(this.hp < 1)
 		{
 			return true;
 		}

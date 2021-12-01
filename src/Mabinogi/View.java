@@ -22,6 +22,7 @@ public class View extends JFrame{
 	Dialog_WrongName dialog_wrongName;
 	//½º¿þ°Å TTF
 	Font font = new Font("KBIZÇÑ¸¶À½°íµñ B", Font.PLAIN, 12);
+	//Font font = new Font("±Ã¼­", Font.PLAIN, 12);
 	
 	int selectedMapIndex;
 	

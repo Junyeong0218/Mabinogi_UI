@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 public class PanelBattleControl extends JPanel {
 
@@ -86,21 +85,41 @@ public class PanelBattleControl extends JPanel {
 		defaultAttack.setBorderPainted(false);
 		defaultAttack.setContentAreaFilled(false);
 		defaultAttack.setFocusPainted(false);
+		defaultAttack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.attackToMob(0);
+			}
+		});
 		
 		smash = new JButton(smash_icon);
 		smash.setBorderPainted(false);
 		smash.setContentAreaFilled(false);
 		smash.setFocusPainted(false);
+		smash.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.attackToMob(1);
+			}
+		});
 		
 		finalHit = new JButton(finalHit_icon);
 		finalHit.setBorderPainted(false);
 		finalHit.setContentAreaFilled(false);
 		finalHit.setFocusPainted(false);
+		finalHit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.attackToMob(2);
+			}
+		});
 		
 		defence = new JButton(defence_icon);
 		defence.setBorderPainted(false);
 		defence.setContentAreaFilled(false);
 		defence.setFocusPainted(false);
+		defence.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.attackToMob(3);
+			}
+		});
 		
 		backToMainControl = new JButton(backToMainControl_icon);
 		backToMainControl.setBorderPainted(false);
