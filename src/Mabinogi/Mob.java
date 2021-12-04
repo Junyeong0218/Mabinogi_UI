@@ -7,6 +7,8 @@ public class Mob {
 	private String name, map;
 	private int level, hp, fullHp, minDamage, maxDamage, critical, defence, exp, minMoney, maxMoney;
 	
+	public Mob() {}
+	
 	public Mob(String name, String map, int level, int hp, int minDamage, int maxDamage, int critical, int defence, int exp, int minMoney, int maxMoney)
 	{
 		this.name = name;
@@ -21,6 +23,62 @@ public class Mob {
 		this.exp = exp;
 		this.minMoney = minMoney;
 		this.maxMoney = maxMoney;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public void setFullHp(int fullHp) {
+		this.fullHp = fullHp;
+	}
+
+	public void setMinDamage(int minDamage) {
+		this.minDamage = minDamage;
+	}
+
+	public void setMaxDamage(int maxDamage) {
+		this.maxDamage = maxDamage;
+	}
+
+	public void setCritical(int critical) {
+		this.critical = critical;
+	}
+
+	public void setDefence(int defence) {
+		this.defence = defence;
+	}
+
+	public void setExp(int exp) {
+		this.exp = exp;
+	}
+
+	public void setMinMoney(int minMoney) {
+		this.minMoney = minMoney;
+	}
+
+	public void setMaxMoney(int maxMoney) {
+		this.maxMoney = maxMoney;
+	}
+
+	public int getMinMoney() {
+		return minMoney;
+	}
+
+	public int getMaxMoney() {
+		return maxMoney;
 	}
 
 	public int getFullHp() {
@@ -57,6 +115,10 @@ public class Mob {
 
 	public int getDefence() {
 		return defence;
+	}
+	
+	public int getExp() {
+		return exp;
 	}
 
 	public int getExp(int userlevel)

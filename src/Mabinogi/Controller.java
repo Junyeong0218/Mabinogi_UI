@@ -2,7 +2,7 @@ package Mabinogi;
 
 import java.util.Random;
 
-public class Controller implements Runnable{
+public class Controller {
 	
 	private Character user = null;
 	
@@ -34,6 +34,7 @@ public class Controller implements Runnable{
 		this.user = user;
 		this.map = map;
 		this.mob = mob;
+		temp_mob = new Mob();
 	}
 	
 	public void setView(View view) {
@@ -348,12 +349,33 @@ public class Controller implements Runnable{
 	
 	public void selectMob(int selectedMapIndex) {
 		if(isBoss()) {
-			temp_mob = null;
-			temp_mob = mob[selectedMapIndex * 5 + 4];
+			temp_mob.setName(mob[selectedMapIndex * 5 + 4].getName());
+			temp_mob.setMap(mob[selectedMapIndex * 5 + 4].getMap());
+			temp_mob.setLevel(mob[selectedMapIndex * 5 + 4].getLevel());
+			temp_mob.setHp(mob[selectedMapIndex * 5 + 4].getHp());
+			temp_mob.setFullHp(mob[selectedMapIndex * 5 + 4].getFullHp());
+			temp_mob.setMinDamage(mob[selectedMapIndex * 5 + 4].getMinDamage());
+			temp_mob.setMaxDamage(mob[selectedMapIndex * 5 + 4].getMaxDamage());
+			temp_mob.setCritical(mob[selectedMapIndex * 5 + 4].getCritical());
+			temp_mob.setDefence(mob[selectedMapIndex * 5 + 4].getDefence());
+			temp_mob.setExp(mob[selectedMapIndex * 5 + 4].getExp());
+			temp_mob.setMinMoney(mob[selectedMapIndex * 5 + 4].getMinMoney());
+			temp_mob.setMaxMoney(mob[selectedMapIndex * 5 + 4].getMaxMoney());
 		} else {
 			Random rand = new Random();
-			temp_mob = null;
-			temp_mob = mob[selectedMapIndex * 5 + rand.nextInt(4)];
+			int rnd = rand.nextInt(4);
+			temp_mob.setName(mob[selectedMapIndex * 5 + rnd].getName());
+			temp_mob.setMap(mob[selectedMapIndex * 5 + rnd].getMap());
+			temp_mob.setLevel(mob[selectedMapIndex * 5 + rnd].getLevel());
+			temp_mob.setHp(mob[selectedMapIndex * 5 + rnd].getHp());
+			temp_mob.setFullHp(mob[selectedMapIndex * 5 + rnd].getFullHp());
+			temp_mob.setMinDamage(mob[selectedMapIndex * 5 + rnd].getMinDamage());
+			temp_mob.setMaxDamage(mob[selectedMapIndex * 5 + rnd].getMaxDamage());
+			temp_mob.setCritical(mob[selectedMapIndex * 5 + rnd].getCritical());
+			temp_mob.setDefence(mob[selectedMapIndex * 5 + rnd].getDefence());
+			temp_mob.setExp(mob[selectedMapIndex * 5 + rnd].getExp());
+			temp_mob.setMinMoney(mob[selectedMapIndex * 5 + rnd].getMinMoney());
+			temp_mob.setMaxMoney(mob[selectedMapIndex * 5 + rnd].getMaxMoney());
 		}
 		battleEncounter = 0;
 		tempEncounter = 0;
@@ -472,13 +494,11 @@ public class Controller implements Runnable{
 					user.levelup();
 					view.refreshBattleMap("레벨이 " + user.getLevel() + "로 올랐습니다!");
 				}
+				user.setFullUserCondition();
 				view.refreshBattleMap("던전 클리어!");
 				view.refreshBattleMap("3초 후 던전 선택 화면으로 돌아갑니다.");
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				System.out.println("3초 후 던전 선택 화면으로 돌아갑니다.");
+				temp_mob = null;
 				goToSelectMap();
 			} else {
 				view.refreshBattleMap(user.earnExp(temp_mob.getExp(user.getLevel())) + " 의 경험치와 " + user.earnMoney(temp_mob.getMoney()) +" 의 골드를 획득했습니다.");
@@ -489,12 +509,6 @@ public class Controller implements Runnable{
 				view.refreshBattleMap("다음 맵으로 이동해주세요. (미니맵 클릭)");
 			}
 		} else {
-			view.refreshBattleMap(0);
-			try {
-				Thread.sleep(1500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			attackToUser();
 			battleEncounter++;
 		}
@@ -510,19 +524,9 @@ public class Controller implements Runnable{
 			view.refreshBattleMap(getMobName() + "에 의해 캐릭터가 사망했습니다.");
 			view.refreshBattleMap("경험치가 감소합니다.");
 			view.refreshBattleMap("3초 후 던전 선택 화면으로 돌아갑니다.");
+			System.out.println("3초 후 던전 선택 화면으로 돌아갑니다.");
 			user.setFullUserCondition();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				//e.printStackTrace();
-			}
 			goToSelectMap();
 		}
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }
